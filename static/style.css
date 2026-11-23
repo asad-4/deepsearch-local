@@ -279,6 +279,89 @@ button:focus-visible, nav a:focus-visible, .brand:focus-visible {
   outline-offset: 3px;
 }
 
+/* ---------- Search bar (the centerpiece) ---------- */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 2rem 0 1.5rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(22, 12, 40, 0.55);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 26px -6px rgba(168, 85, 247, 0.45),
+    0 0 70px -18px rgba(99, 102, 241, 0.45);
+  transition: box-shadow 0.35s var(--ease);
+}
+/* Animated gradient border: a conic gradient masked down to a thin ring. */
+.search::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from var(--angle),
+    #7c3aed, #a855f7, #e9d5ff, #8b5cf6, #6366f1, #3b82f6, #7c3aed);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.7;
+  transition: opacity 0.35s var(--ease);
+  animation: border-spin 8s linear infinite;
+}
+@keyframes border-spin { to { --angle: 360deg; } }
+.search:hover::before { opacity: 0.9; }
+.search:focus-within::before { opacity: 1; }
+.search:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 34px -4px rgba(168, 85, 247, 0.6),
+    0 0 90px -16px rgba(99, 102, 241, 0.55);
+}
+.search:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 42px -2px rgba(168, 85, 247, 0.75),
+    0 0 110px -12px rgba(99, 102, 241, 0.65);
+}
+.search-icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--lilac);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.6));
+}
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 0.25rem;
+  font: inherit;
+  font-size: 1.15rem;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search input::placeholder { color: var(--faint); }
+.search button { padding: 0.8rem 1.4rem; font-size: 1rem; }
+.sparkle { width: 16px; height: 16px; fill: currentColor; filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7)); }
+
 /* ---------- Glass cards ---------- */
 .panel, .results li, .metrics div, table {
   background: var(--glass);

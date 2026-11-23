@@ -12,6 +12,22 @@
   </div>
 </section>
 
+<form method="get" action="{{ url_for('search_route') }}" class="search" role="search">
+  <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="M20 20l-3.6-3.6"></path>
+  </svg>
+  <input name="q" type="search" value="{{ query }}" placeholder="Search your notes"
+         aria-label="Search query" autofocus>
+  <button type="submit">
+    <svg class="sparkle" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M11 3c.5 4.4 2.6 6.5 7 7-4.4.5-6.5 2.6-7 7-.5-4.4-2.6-6.5-7-7 4.4-.5 6.5-2.6 7-7z"></path>
+      <path d="M19 14.5c.2 1.8 1 2.6 2.8 2.8-1.8.2-2.6 1-2.8 2.8-.2-1.8-1-2.6-2.8-2.8 1.8-.2 2.6-1 2.8-2.8z"></path>
+    </svg>
+    Search
+  </button>
+</form>
+
 <section class="panel">
   <form method="post" action="{{ url_for('index_route') }}" class="row">
     <label for="folder">Folder</label>
@@ -28,12 +44,6 @@
     {% endif %}
   </p>
 </section>
-
-<form method="get" action="{{ url_for('search_route') }}" class="row search">
-  <input name="q" type="search" value="{{ query }}" placeholder="Search your notes"
-         aria-label="Search query" autofocus>
-  <button type="submit">Search</button>
-</form>
 
 {% if message %}
   <p class="message {{ message_kind }}" role="status">{{ message }}</p>
