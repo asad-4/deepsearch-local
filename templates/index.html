@@ -7,7 +7,7 @@
            placeholder="/path/to/your/notes">
     <button type="submit">Index folder</button>
   </form>
-  <p class="status">
+  <p class="status {{ 'ready' if index else 'empty' }}">
     {% if index %}
       Searching {{ index|length }} document{{ '' if index|length == 1 else 's' }} in
       <code>{{ index.folder }}</code>

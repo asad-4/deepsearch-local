@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <title>{% block title %}DeepSearch Local{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <header>
-    <a class="brand" href="{{ url_for('home') }}">DeepSearch Local</a>
-    <nav>
-      <a href="{{ url_for('home') }}">Search</a>
-      <a href="{{ url_for('evaluate_route') }}">Evaluation</a>
-    </nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="{{ url_for('home') }}">DeepSearch Local</a>
+      <nav aria-label="Main">
+        <a href="{{ url_for('home') }}"{% if request.endpoint != 'evaluate_route' %} aria-current="page"{% endif %}>Search</a>
+        <a href="{{ url_for('evaluate_route') }}"{% if request.endpoint == 'evaluate_route' %} aria-current="page"{% endif %}>Evaluation</a>
+      </nav>
+    </div>
   </header>
   <main>
     {% block content %}{% endblock %}
