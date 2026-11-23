@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Evaluation · DeepSearch Local{% endblock %}
 {% block content %}
-<h1>Search evaluation</h1>
-<p>Runs a fixed set of test queries against the bundled <code>sample_docs/</code> folder
+<h1 class="page-title">Search <span class="gradient-text">evaluation</span></h1>
+<p class="page-lead">Runs a fixed set of test queries against the bundled <code>sample_docs/</code> folder
 and compares the ranking with the documents known to be relevant.</p>
 
-<form method="get" action="{{ url_for('evaluate_route') }}" class="row">
+<form method="get" action="{{ url_for('evaluate_route') }}" class="row panel k-form">
   <label for="k">k</label>
   <input id="k" name="k" type="number" min="1" max="{{ max_k }}" value="{{ k }}">
   <button type="submit">Recalculate</button>
@@ -16,18 +16,19 @@ and compares the ranking with the documents known to be relevant.</p>
 
 {% if report %}
   <div class="metrics">
-    <div><span class="label">Mean Precision@{{ report.k }}</span>
+    <div class="stat"><span class="label">Mean Precision@{{ report.k }}</span>
          <span class="value" id="mean-precision">{{ '%.3f'|format(report.mean_precision) }}</span></div>
-    <div><span class="label">MRR</span>
+    <div class="stat"><span class="label">MRR</span>
          <span class="value" id="mrr">{{ '%.3f'|format(report.mrr) }}</span></div>
-    <div><span class="label">Queries</span>
+    <div class="stat"><span class="label">Queries</span>
          <span class="value">{{ report.rows|length }}</span></div>
   </div>
 
+  <div class="table-wrap">
   <table>
     <thead>
       <tr><th>Query</th><th>Top {{ report.k }} results</th><th>Relevant</th>
-          <th>P@{{ report.k }}</th><th>RR</th></tr>
+          <th class="num">P@{{ report.k }}</th><th class="num">RR</th></tr>
     </thead>
     <tbody>
       {% for row in report.rows %}
@@ -43,12 +44,13 @@ and compares the ranking with the documents known to be relevant.</p>
             </ol>
           </td>
           <td>{{ row.relevant|join(', ') }}</td>
-          <td>{{ '%.2f'|format(row.precision) }}</td>
-          <td>{{ '%.2f'|format(row.reciprocal_rank) }}</td>
+          <td class="num">{{ '%.2f'|format(row.precision) }}</td>
+          <td class="num">{{ '%.2f'|format(row.reciprocal_rank) }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+  </div>
 
   <p class="note">Precision@k = relevant documents in the top k ÷ k.
   RR = 1 ÷ rank of the first relevant result (0 if none). MRR = average RR over all queries.</p>
