@@ -1,0 +1,15 @@
+Cellular Respiration
+
+Cellular respiration releases the energy stored in glucose and stores it as ATP,
+the energy currency of the cell. Most of it happens in the mitochondria.
+
+Stages:
+1. Glycolysis - in the cytoplasm. Glucose is split into two pyruvate molecules,
+   producing 2 ATP.
+2. Krebs cycle (citric acid cycle) - in the mitochondrial matrix. Produces NADH
+   and FADH2 and releases carbon dioxide.
+3. Electron transport chain - on the inner mitochondrial membrane. Uses NADH and
+   FADH2 to pump protons; ATP synthase then makes about 34 ATP. Oxygen is the
+   final electron acceptor and forms water.
+
+Without oxygen, cells use fermentation, which produces far less ATP.

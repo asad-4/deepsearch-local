@@ -1,0 +1,10 @@
+[
+  {"query": "hash table collisions", "relevant": ["hash_tables.md"]},
+  {"query": "binary search sorted array", "relevant": ["binary_search.txt"]},
+  {"query": "merge sort recursion", "relevant": ["sorting_algorithms.md", "recursion.txt"]},
+  {"query": "mitochondria ATP energy", "relevant": ["biology/cell_respiration.txt", "biology/cell_structure.md"]},
+  {"query": "chlorophyll light photosynthesis", "relevant": ["biology/photosynthesis.md"]},
+  {"query": "revolution", "relevant": ["history/french_revolution.md", "history/industrial_revolution.txt"]},
+  {"query": "steam engine factories", "relevant": ["history/industrial_revolution.txt"]},
+  {"query": "spaced repetition exam", "relevant": ["study_tips.md"]}
+]

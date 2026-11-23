@@ -1,0 +1,17 @@
+Binary Search
+
+Binary search finds a target value in a sorted array. It compares the target
+with the middle element. If they are equal the search is done. If the target is
+smaller, the search continues in the left half; otherwise in the right half.
+Each step halves the remaining range, so binary search runs in O(log n) time.
+
+The array must be sorted first. Searching an unsorted array with binary search
+gives wrong answers.
+
+Common bugs:
+- Off-by-one errors when updating the low and high indexes.
+- Integer overflow when computing the middle as (low + high) / 2 in languages
+  with fixed-size integers; use low + (high - low) / 2 instead.
+
+Binary search can also be used on answers: if a condition is monotonic, binary
+search finds the smallest value for which the condition holds.

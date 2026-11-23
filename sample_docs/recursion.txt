@@ -1,0 +1,16 @@
+Recursion
+
+A recursive function is a function that calls itself. Every recursive function
+needs a base case that stops the recursion, and a recursive case that moves the
+problem closer to the base case.
+
+Example: factorial(n) = n * factorial(n - 1), with factorial(0) = 1 as the
+base case.
+
+Each recursive call adds a frame to the call stack. If there is no base case, or
+the base case is never reached, the program fails with a stack overflow
+(RecursionError in Python).
+
+Recursion fits naturally with divide and conquer algorithms such as merge sort
+and with tree traversal. Any recursion can be rewritten with a loop and an
+explicit stack.
