@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <span class="pill-badge">Private, local search</span>
+    <h1 class="hero-title">Search your notes. <span class="gradient-text">Privately.</span></h1>
+    <p class="hero-lead">BM25 ranking over the .txt and .md files in a folder you choose, all on this computer.</p>
+  </div>
+  <div class="orb" aria-hidden="true">
+    <span class="orb-core"></span>
+    <span class="orb-swirl"></span>
+  </div>
+</section>
+
 <section class="panel">
   <form method="post" action="{{ url_for('index_route') }}" class="row">
     <label for="folder">Folder</label>
