@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel">
+  <form method="post" action="{{ url_for('index_route') }}" class="row">
+    <label for="folder">Folder</label>
+    <input id="folder" name="folder" type="text" value="{{ folder }}"
+           placeholder="/path/to/your/notes">
+    <button type="submit">Index folder</button>
+  </form>
+  <p class="status">
+    {% if index %}
+      Searching {{ index|length }} document{{ '' if index|length == 1 else 's' }} in
+      <code>{{ index.folder }}</code>
+    {% else %}
+      No folder indexed yet. Supported files: .txt and .md
+    {% endif %}
+  </p>
+</section>
+
+<form method="get" action="{{ url_for('search_route') }}" class="row search">
+  <input name="q" type="search" value="{{ query }}" placeholder="Search your notes"
+         aria-label="Search query" autofocus>
+  <button type="submit">Search</button>
+</form>
+
+{% if message %}
+  <p class="message {{ message_kind }}" role="status">{{ message }}</p>
+{% endif %}
+
+{% if results %}
+  <p class="count">{{ results|length }} result{{ '' if results|length == 1 else 's' }}</p>
+  <ol class="results">
+    {% for result in results %}
+      <li>
+        <div class="result-head">
+          <span class="name">{{ result.name }}</span>
+          {% if result.doc_id != result.name %}<span class="path">{{ result.doc_id }}</span>{% endif %}
+          <span class="score">score {{ '%.2f'|format(result.score) }}</span>
+        </div>
+        <p class="snippet">{{ result.snippet_html }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}
+{% endblock %}

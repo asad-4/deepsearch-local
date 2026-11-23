@@ -162,7 +162,9 @@ Acceptance: each row above has a logic test and a route test.
 
 ## R8 — Everything stays local
 
-- The server only listens on `127.0.0.1` (port 5000), so other machines cannot reach it.
+- The server only listens on the loopback addresses `127.0.0.1` and `::1` (port 5000,
+  overridable with the `PORT` environment variable), so other machines cannot reach it.
+  `::1` is included because browsers resolve `localhost` to it first.
 - The app makes no network requests. Documents and the index stay in process memory.
   Nothing is written to disk.
 - Pages load no external resources: no CDN links, web fonts, analytics or external
@@ -170,7 +172,7 @@ Acceptance: each row above has a logic test and a route test.
 - Only Flask (and its dependencies) and pytest are used.
 
 Acceptance:
-- The configured host is `127.0.0.1`.
+- The server binds only to loopback addresses.
 - With outbound socket connections blocked in the test, indexing, searching and evaluating
   all still work.
 - No rendered page contains `http://` or `https://` in a `src` or `href` attribute.

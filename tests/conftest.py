@@ -21,3 +21,23 @@ def make_folder(tmp_path):
         return str(tmp_path)
 
     return _make
+
+
+@pytest.fixture
+def app():
+    from app import create_app
+
+    return create_app()
+
+
+@pytest.fixture
+def client(app):
+    return app.test_client()
+
+
+@pytest.fixture
+def indexed_client(client):
+    """A client that has already indexed sample_docs/."""
+    response = client.post("/index", data={"folder": SAMPLE_DOCS})
+    assert response.status_code == 200
+    return client
